@@ -19,7 +19,8 @@ function preLoader() {
     $showTips = document.querySelector(".tipBtn"),
     $pencil = document.querySelector("#pencil"),
     $overlay = document.querySelector("#overlay"),
-    $hideTips = document.querySelector(".closebtn");
+    $hideTips = document.querySelector(".closebtn"),
+    $li = document.querySelectorAll('.todos li')
 
 
   function deleteItem() {
@@ -29,6 +30,7 @@ function preLoader() {
       });
     }
   }
+
   deleteItem();
   $input.addEventListener("keypress", function (key) {
     if (key.which == 13) {
@@ -44,12 +46,30 @@ function preLoader() {
         li.insertAdjacentElement("afterbegin", span);
         $ul.insertAdjacentElement("afterbegin", li);
         $basket = document.querySelectorAll(".todos span")
+       
         deleteItem()
+
       } else {
         alert("Error! Wrong data!");
       }
     }
   });
+  $ul.addEventListener('click',(event)=>{
+      console.log(event.target.tagName)
+      if (event.target.tagName == 'LI'){
+          event.target.classList.toggle('checked')
+      }
+  })
+//   function check(){
+//     $li = document.querySelectorAll('.todos li')
+//         for (let i = 0; i < $li.length; i++){
+//       $li[i].addEventListener('click', function(){
+//         console.log($li)
+//           this.classList.toggle('checked')
+//       })
+//   }
+//   }
+
   $pencil.addEventListener('click', ()=>{
       $input.classList.toggle('display')
   })
